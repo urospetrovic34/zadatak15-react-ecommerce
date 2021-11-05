@@ -100,6 +100,10 @@ img{
 
 .modal{
     background-color:green;
-    width: 80%;
+    width: 820px;
     display:flex;
+}
+
+.close-modal{
+    cursor:pointer;
 }
