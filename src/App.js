@@ -1,9 +1,16 @@
 import React from 'react'
+import './App.css';
+import AppNavbar from './components/AppNavbar.jsx'
+import Main from './components/Main.jsx'
+import AppFooter from './components/AppFooter.jsx'
 
-export const App = () => {
+
+const App = () => {
   return (
     <div>
-      
+      <AppNavbar/>
+      <Main/>
+      <AppFooter/>
     </div>
   )
 }
