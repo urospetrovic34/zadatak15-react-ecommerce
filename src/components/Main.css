@@ -14,9 +14,10 @@
     flex-wrap: wrap;
     width:80%;
     gap: 2%;
+    position: relative;
 }
 
-.main > div{
+.article-item{
     display:flex;
     align-items:center;
     justify-content:center;
@@ -73,4 +74,32 @@ img{
 .price-container{
     display: flex;
     width: 100%;
+}
+
+.modal-wrapper{
+    background-color:rgba(0,0,0,0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-wrapper-hidden{
+    background-color:rgba(0,0,0,0.5);
+    display:none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.modal{
+    background-color:green;
+    width: 80%;
+    display:flex;
 }
