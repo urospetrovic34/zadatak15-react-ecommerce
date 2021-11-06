@@ -16,7 +16,7 @@ const Main = () => {
     id: "",
     brand: "",
     name: "",
-    sizes: "",
+    sizes: [],
     price: "",
     discount: "",
     colour: "",
@@ -69,7 +69,7 @@ const Main = () => {
       id: "",
       brand: "",
       name: "",
-      sizes: "",
+      sizes: [],
       price: "",
       discount: "",
       colour: "",
@@ -136,7 +136,11 @@ const Main = () => {
           <div className="article-size-container-list">
             {sizes.map((data) => {
               return (
-                <div key={data.id} className="size-box" data-checked={data.checked}>
+                <div
+                  key={data.id}
+                  className="size-box"
+                  data-checked={data.checked}
+                >
                   <p>{data.value}</p>
                 </div>
               );
@@ -181,15 +185,40 @@ const Main = () => {
               <img src={object.picture} alt={object.name} />
             </div>
             <div className="modal-info">
-                <div className="modal-first-row">
-              <p className="modal-brand">{object.brand}</p>
-              <FontAwesomeIcon
-                icon="times"
-                onClick={closeModal}
-                className="close-modal"
-              />
-                </div>
+              <div>
+              <div className="modal-first-row">
+                <p className="modal-brand">{object.brand}</p>
+                <FontAwesomeIcon
+                  icon="times"
+                  onClick={closeModal}
+                  className="close-modal"
+                />
+              </div>
               <p className="modal-name">{object.name}</p>
+              <div className="modal-second-row">
+                {object.sizes.map((data) => {
+                  return (
+                    <div
+                      key={data}
+                      className="size-box-modal"
+                      data-checked={data}
+                    >
+                      <p>{data}</p>
+                    </div>
+                  );
+                })}
+              </div>
+              </div>
+                <div>
+              <button className="modal-order">
+                {!object.discount ? (
+                  <p className="discount">{object.price} RSD</p>
+                ) : (
+                  <p className="discount">{object.discount} RSD</p>
+                )}
+              </button>
+                </div>
+
             </div>
           </div>
         </span>
