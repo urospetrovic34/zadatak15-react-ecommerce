@@ -3,9 +3,13 @@ import "./Main.css";
 import { articles } from "../util/articles.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimes,
+  faChevronUp,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faTimes);
+library.add(faTimes, faChevronUp, faChevronDown);
 
 const Main = () => {
   const [object, setObject] = useState({
@@ -19,6 +23,25 @@ const Main = () => {
     picture: "",
   });
   const [visible, setVisible] = useState("modal-wrapper-hidden");
+  const brands = [];
+  const colours = [];
+  const sizes = [];
+  const sizesNumbers = Array.from({ length: 12 }, (_, i) => i + 37);
+  const uniqueBrands = [
+    ...new Map(articles.map((item) => [item["brand"], item])).values(),
+  ];
+  uniqueBrands.map(({ id, brand }) =>
+    brands.push({ id: id, checked: false, value: brand })
+  );
+  const uniqueColours = [
+    ...new Map(articles.map((item) => [item["colour"], item])).values(),
+  ];
+  uniqueColours.map(({ id, colour }) =>
+    colours.push({ id: id, checked: false, value: colour })
+  );
+  for (let i = 0; i < 12; i++) {
+    sizes.push({ id: i, checked: false, value: sizesNumbers[i] });
+  }
 
   const openModal = (passedId) => {
     articles.forEach((article) =>
@@ -56,8 +79,73 @@ const Main = () => {
 
   return (
     <div className="wrapper">
+      <div className="filter-menu">
+        <p className="filter-title">FILTER</p>
+        <div className="article-model-container">
+          <div className="article-model-container-title">
+            <div>MODEL</div>
+            <FontAwesomeIcon
+              icon="chevron-up"
+              className="dropdown-menu-button"
+            />
+          </div>
+          <div className="article-model-container-list">
+            {brands.map((data) => {
+              return (
+                <div key={data.id} className="checkbox-custom">
+                  <input
+                    type="checkbox"
+                    id={data.id}
+                    name={data.value}
+                    checked={data.checked}
+                  />
+                  <label htmlFor={data.value}>{data.value}</label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="article-colour-container">
+          <div className="article-colour-container-title">
+            <div>COLOUR</div>
+            <FontAwesomeIcon
+              icon="chevron-up"
+              className="dropdown-menu-button"
+            />
+          </div>
+          <div className="article-colour-container-list">
+            {colours.map((data) => {
+              return (
+                <div key={data.id} className="checkbox-custom">
+                  <input
+                    type="checkbox"
+                    id={data.id}
+                    name={data.value}
+                    checked={data.checked}
+                  />
+                  <label htmlFor={data.value}>{data.value}</label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="article-size-container">
+          <div className="article-size-container-title">
+            <div>SIZES</div>
+          </div>
+          <div className="article-size-container-list">
+            {sizes.map((data) => {
+              return (
+                <div key={data.id} className="size-box" data-checked={data.checked}>
+                  <p>{data.value}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
       <div className="main">
-        {articles.map((data, index) => {
+        {articles.map((data) => {
           return (
             <div
               className="article-item"
@@ -89,13 +177,19 @@ const Main = () => {
         })}
         <span className={`${visible}`}>
           <div className="modal">
-            <div>
+            <div className="modal-image">
               <img src={object.picture} alt={object.name} />
             </div>
-            <div>
+            <div className="modal-info">
+                <div className="modal-first-row">
               <p className="modal-brand">{object.brand}</p>
+              <FontAwesomeIcon
+                icon="times"
+                onClick={closeModal}
+                className="close-modal"
+              />
+                </div>
               <p className="modal-name">{object.name}</p>
-              <FontAwesomeIcon icon="times" onClick={closeModal} className="close-modal"/>
             </div>
           </div>
         </span>

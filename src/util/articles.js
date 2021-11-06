@@ -76,7 +76,7 @@ export const articles = [
         "sizes":[42,43,44,47],
         "price":6100,
         "discount":null,
-        "colour":"",
+        "colour":"Teal",
         "picture":"https://cdn.flightclub.com/750/TEMPLATE/991802/1.jpg"
     },
     {
