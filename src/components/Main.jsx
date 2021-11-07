@@ -76,6 +76,7 @@ const Main = () => {
       colour: "",
       picture: "",
     }));
+    setAmmount(1)
   };
 
   const addAmmount = () => {
