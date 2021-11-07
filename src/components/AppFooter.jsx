@@ -4,7 +4,7 @@ import "./AppFooter.css";
 const AppFooter = () => {
     return (
         <div className="footer">
-            <p>STORE</p>
+            <p>SNEAKERS</p>
         </div>
     )
 }

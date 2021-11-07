@@ -2,7 +2,8 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    background-color:red;
+    background-color:#98002E; 
+    background-image:url('../cssAssets/patternbg.png');
     padding:20px 15px;
 }
 
@@ -13,8 +14,14 @@
 }
 
 .nav-title > p{
-    font-size:18px;
-    color:white;
+    font-size:25px;    
+    color:#F9A01B;
+    letter-spacing:1px;
+    font-family:"Alfa Slab One",sans-serif;
+}
+
+.nav-title-small{
+    display:none;
 }
 
 .nav-search{
@@ -27,8 +34,20 @@
     border-radius:30px;
 }
 
+.nav-search-small{
+    display:none;
+    align-items: center;
+    margin-left:30px;
+    margin-right:30px;
+    background-color:white;
+    padding:5px 20px 5px 20px;
+    border-radius:30px;
+}
+
 .nav-shopping-cart{
     padding-right:20px;
+    color:#F9A01B;
+    cursor: pointer;
 }
 
 .search-input{
@@ -39,4 +58,32 @@
     padding-bottom:10px;
     padding-right:10px;
     width:450px;
+}
+
+@media screen and (max-width:750px) {
+    .search-input{
+        width:100%;
+    }
+    .nav-search-small{
+        display:flex;
+        width:100%;
+    }
+    .nav-search{
+        display:none;
+    }
+}
+
+@media screen and (max-width:540px){
+    .nav-title-small{
+        display:block;
+    }
+    .nav-title-small > *{
+        width:100%;
+        height:100%;
+        font-size:30px;
+        color:#F9A01B;
+    }
+    .nav-title{
+        display:none;
+    }
 }

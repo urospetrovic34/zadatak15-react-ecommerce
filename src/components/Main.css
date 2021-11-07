@@ -28,7 +28,8 @@
 
 .article-model-container,
 .article-colour-container,
-.article-size-container{
+.article-size-container,
+.article-price-container{
     display: flex;
     flex-direction: column;
     background-color:white;
@@ -37,7 +38,8 @@
 
 .article-model-container-title,
 .article-colour-container-title,
-.article-size-container-title{
+.article-size-container-title,
+.article-price-container-title{
     display: flex;
     justify-content:space-between;
     padding:5px;
@@ -45,9 +47,25 @@
     font-size: 14px;
 }
 
+.article-price-number-desc{
+    font-size: 14px;
+}
+
 .article-model-container-list,
 .article-colour-container-list{
     padding:2px 2px 2px 5px;
+}
+
+.article-price-container-list{
+    padding:5px;
+}
+
+.article-price-container-list > *:nth-child(1){
+    margin-top:5px;
+}
+
+.article-price-container-list > *{
+    margin-bottom:5px;
 }
 
 .article-model-container-list > div,
@@ -63,6 +81,24 @@
 label{
     cursor: pointer;
 }
+
+input[type="number"] {
+    width:100%;
+    height:30px;
+    padding:10px;
+}
+
+.article-price-button{
+    width:100%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    height:30px;
+    background-color:#98002E;
+    color:white;
+    margin-top:5px;
+}
+
 
 input[type="checkbox"] {
     -webkit-appearance: none;
@@ -175,6 +211,7 @@ img{
     background-color:white;
     width: 1240px;
     display:flex;
+    padding:10px;
 }
 
 .modal-image img{
@@ -230,12 +267,45 @@ img{
     cursor: pointer;
 }
 
+.filter-title{
+    font-size:20px;
+    font-weight: 600;
+    letter-spacing:1.5px;
+    margin-top:15px;
+}
+
 .modal-order{
     width:100%;
     height:50px;
     outline:none;
     border: none;
     cursor: pointer;
-    background-color:red;
+    background-color:#98002E;
     color:white;
+}
+
+@media screen and (max-width:1323px) {
+    img{
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .filter-menu{
+        display:none;
+    }
+    .main{
+        padding:10px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:540px){
+    img{
+        width: 350px;
+        height: 350px;
+        object-fit: contain;
+    }
 }

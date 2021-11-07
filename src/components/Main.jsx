@@ -147,6 +147,18 @@ const Main = () => {
             })}
           </div>
         </div>
+        <div className="article-price-container">
+          <div className="article-price-container-title">
+            <div>PRICE</div>
+          </div>
+          <div className="article-price-container-list">
+            <p className="article-price-number-desc">FROM</p>
+            <input type="number" />
+            <p className="article-price-number-desc">TO</p>
+            <input type="number" />
+            <button className="article-price-button">APPLY PRICE</button>
+          </div>
+        </div>
       </div>
       <div className="main">
         {articles.map((data) => {

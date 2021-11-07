@@ -2,19 +2,26 @@ import React from "react";
 import "./AppNavbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faSearch,faBiohazard } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faShoppingCart,faSearch);
+library.add(faShoppingCart,faSearch,faBiohazard);
 
 const AppNavbar = () => {
   return (
     <div className="nav-container">
+        <div className="nav-title-small">
+        <FontAwesomeIcon icon="biohazard" />
+        </div>
       <div className="nav-title">
-        <p>STORE</p>
+        <p>SNEAKERS</p>
       <div className="nav-search">
         <input type="text" className="search-input" placeholder="Search"/>
         <FontAwesomeIcon icon="search" />
       </div>
+      </div>
+      <div className="nav-search-small">
+        <input type="text" className="search-input" placeholder="Search"/>
+        <FontAwesomeIcon icon="search" />
       </div>
       <div className="nav-shopping-cart">
         <FontAwesomeIcon icon="shopping-cart" />
