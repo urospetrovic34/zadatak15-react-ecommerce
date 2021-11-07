@@ -23,6 +23,7 @@ const Main = () => {
     picture: "",
   });
   const [visible, setVisible] = useState("modal-wrapper-hidden");
+  const [ammount, setAmmount] = useState(1);
   const brands = [];
   const colours = [];
   const sizes = [];
@@ -75,6 +76,18 @@ const Main = () => {
       colour: "",
       picture: "",
     }));
+  };
+
+  const addAmmount = () => {
+    let currentAmmount = ammount;
+    setAmmount((currentAmmount += 1));
+  };
+
+  const subtractAmmount = () => {
+    if (ammount > 1) {
+      let currentAmmount = ammount;
+      setAmmount((currentAmmount -= 1));
+    }
   };
 
   return (
@@ -198,39 +211,57 @@ const Main = () => {
             </div>
             <div className="modal-info">
               <div>
-              <div className="modal-first-row">
-                <p className="modal-brand">{object.brand}</p>
-                <FontAwesomeIcon
-                  icon="times"
-                  onClick={closeModal}
-                  className="close-modal"
-                />
-              </div>
-              <p className="modal-name">{object.name}</p>
-              <div className="modal-second-row">
-                {object.sizes.map((data) => {
-                  return (
-                    <div
-                      key={data}
-                      className="size-box-modal"
-                      data-checked={data}
-                    >
-                      <p>{data}</p>
-                    </div>
-                  );
-                })}
-              </div>
-              </div>
-                <div>
-              <button className="modal-order">
-                {!object.discount ? (
-                  <p className="discount">{object.price} RSD</p>
-                ) : (
-                  <p className="discount">{object.discount} RSD</p>
-                )}
-              </button>
+                <div className="modal-first-row">
+                  <p className="modal-brand">{object.brand}</p>
+                  <FontAwesomeIcon
+                    icon="times"
+                    onClick={closeModal}
+                    className="close-modal"
+                  />
                 </div>
-
+                <p className="modal-name">{object.name}</p>
+                <div className="modal-second-row">
+                  {object.sizes.map((data) => {
+                    return (
+                      <div
+                        key={data}
+                        className="size-box-modal"
+                        data-checked={data}
+                      >
+                        <p>{data}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="modal-ammount">
+                  <div
+                    id="subtract"
+                    className="ammount-button"
+                    onClick={subtractAmmount}
+                  >
+                    -
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      className="ammount-input"
+                      value={ammount}
+                    />
+                  </div>
+                  <div id="add" className="ammount-button" onClick={addAmmount}>
+                    +
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button className="modal-order">
+                  {!object.discount ? (
+                    <p className="discount">{object.price} RSD</p>
+                  ) : (
+                    <p className="discount">{object.discount} RSD</p>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </span>

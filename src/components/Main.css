@@ -214,6 +214,28 @@ img{
     padding:10px;
 }
 
+.modal-ammount{
+    display:flex;
+    gap:2px;
+}
+
+.ammount-button{
+    padding:20px;
+    border:1px solid black;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.ammount-input{
+    pointer-events: none;
+    height:100%;
+    width:70px;
+    outline: none;
+    border:1px solid black;
+    font-size: 20px;
+    text-align: center;
+}
+
 .modal-image img{
     height:500px;
     width:700px;
