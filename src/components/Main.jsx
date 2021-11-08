@@ -8,7 +8,7 @@ import { faTimes, faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg
 library.add(faTimes, faChevronUp, faChevronDown);
 
 const Main = ({ searchValue, cart, setCart }) => {
-	console.log("Ovo je moj cart: " + cart);
+	console.log(cart);
 	const [visible, setVisible] = useState("modal-wrapper-hidden");
 	const [search, setSearch] = useState({
 		brands: [],
