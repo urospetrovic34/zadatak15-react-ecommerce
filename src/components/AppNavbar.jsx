@@ -8,15 +8,15 @@ import { useState } from "react/cjs/react.development";
 library.add(faShoppingCart, faSearch, faBiohazard);
 
 const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
-	const [visible, setVisible] = useState("modal-wrapper-hidden");
+	const [visible2, setVisible2] = useState("modal-wrapper-hidden");
 
 	const openCart = () => {
 		console.log("OPEN CART");
-		setVisible("modal-wrapper");
+		setVisible2("modal-wrapper");
 	};
 
 	const closeCart = () => {
-		setVisible("modal-wrapper-hidden");
+		setVisible2("modal-wrapper-hidden");
 	};
 	console.log(cart);
 	return (
@@ -38,7 +38,7 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 			<div className="nav-shopping-cart" onClick={openCart}>
 				<FontAwesomeIcon icon="shopping-cart" />
 			</div>
-			<span className={`${visible}`}>
+			<span className={`${visible2}`}>
 				<div className="modal add-to-cart">
 					{cart.map((item) => {
 						console.log(item.idItemCart);
