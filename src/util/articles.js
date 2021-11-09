@@ -1,4 +1,4 @@
-export default [
+export const articles = [
 	{
 		id: 1,
 		brand: "Nike",
