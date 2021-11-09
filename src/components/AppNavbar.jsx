@@ -1,23 +1,27 @@
-import React,{ useState } from "react";
+import React from "react";
 import "./AppNavbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faShoppingCart, faSearch, faBiohazard } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react/cjs/react.development";
 
 library.add(faShoppingCart, faSearch, faBiohazard);
 
 const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
-	const [visible2, setVisible2] = useState("modal-wrapper-hidden");
+	const [visible, setVisible] = useState("modal-wrapper-hidden");
 
 	const openCart = () => {
 		console.log("OPEN CART");
-		setVisible2("modal-wrapper");
+		setVisible("modal-wrapper");
 	};
 
 	const closeCart = () => {
-		setVisible2("modal-wrapper-hidden");
+		setVisible("modal-wrapper-hidden");
 	};
-	console.log(cart);
+
+	const updateArticle = (e) => {
+		return console.log(e); // Nece da promeni vrednost value-a
+	};
 	return (
 		<div className="nav-container">
 			<div className="nav-title-small">
@@ -37,10 +41,9 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 			<div className="nav-shopping-cart" onClick={openCart}>
 				<FontAwesomeIcon icon="shopping-cart" />
 			</div>
-			<span className={`${visible2}`}>
+			<span className={`${visible}`}>
 				<div className="modal add-to-cart">
 					{cart.map((item) => {
-						console.log(item.idItemCart);
 						return (
 							<div className="article-item" id={item.article.id} key={item.idItemCart}>
 								<img src={item.article.picture} alt={item.article.name} />
@@ -56,7 +59,7 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 								<div className="size-container">
 									<p>{item.size}</p>
 								</div>
-								<input type="number" value={item.quantity} readOnly />
+								<input type="number" value={item.quantity} onChange={updateArticle} />
 							</div>
 						);
 					})}
