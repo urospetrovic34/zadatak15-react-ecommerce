@@ -8,7 +8,8 @@ import { faTimes, faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg
 library.add(faTimes, faChevronUp, faChevronDown);
 
 const Main = ({ searchValue, cart, setCart }) => {
-	console.log(cart);
+	// console.log("Ovo je moj kart");
+	// console.log(cart);
 	const [visible, setVisible] = useState("modal-wrapper-hidden");
 	const [search, setSearch] = useState({
 		brands: [],
@@ -117,17 +118,19 @@ const Main = ({ searchValue, cart, setCart }) => {
 	};
 
 	const addToCart = () => {
-		let quantity = item.quantity < 1 ? 1 : item.quantity;
-		let price = item.article.price * quantity;
-
+		let quantity = item.quantity < 1 ? 1 : Number(item.quantity);
+		let isDiscountPrice = item.article.discount === null ? item.article.price : item.article.discount; // Ako je svojsvto discount razlicito od null onda postoji popust
+		let price = isDiscountPrice * quantity;
 		let cartItem = {
+			// idItemCart: id,
 			article: item.article,
 			totalPrice: price,
 			quantity: quantity,
 			size: item.size,
+			img: item.article.picture,
 		};
-
-		console.log(cart);
+		// let idItemCart = cartItem.length === 1 ? 1 : idItemCart + 1;
+		console.log(cart.length);
 		setCart([...cart, cartItem]);
 		closeModal();
 

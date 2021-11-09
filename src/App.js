@@ -6,7 +6,11 @@ import AppFooter from "./components/AppFooter.jsx";
 
 const App = () => {
 	const [searchValue, setSearchValue] = useState("");
-	const [cart, setCart] = useState([]);
+
+	const itemsInCart = JSON.parse(localStorage.getItem("cart")) || [];
+	const [cart, setCart] = useState(itemsInCart);
+	const openCart = useState();
+	const closeCart = useState();
 
 	useEffect(() => {
 		localStorage.setItem("cart", JSON.stringify(cart));
@@ -14,12 +18,12 @@ const App = () => {
 
 	useEffect(() => {
 		setCart(JSON.parse(localStorage.getItem("cart")));
-		console.log(JSON.parse(localStorage.getItem("cart")));
+		// console.log(JSON.parse(localStorage.getItem("cart")));
 	}, []);
 
 	return (
 		<div>
-			<AppNavbar searchValue={searchValue} setSearchValue={setSearchValue} />
+			<AppNavbar searchValue={searchValue} setSearchValue={setSearchValue} openCart={openCart} closeCart={closeCart} cart={cart} />
 			<Main searchValue={searchValue} setCart={setCart} cart={cart} />
 			<AppFooter />
 		</div>
