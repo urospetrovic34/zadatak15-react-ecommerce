@@ -1,9 +1,8 @@
-import React from "react";
+import React,{ useState } from "react";
 import "./AppNavbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faShoppingCart, faSearch, faBiohazard } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react/cjs/react.development";
 
 library.add(faShoppingCart, faSearch, faBiohazard);
 
