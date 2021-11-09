@@ -1,4 +1,4 @@
-export const articles = [
+const articles = [
     {
         "id":1,
         "brand":"Nike",
@@ -300,3 +300,4 @@ export const articles = [
         "picture":"https://cdn.flightclub.com/1000/TEMPLATE/263018/1.jpg"
     }
 ]
+export default articles
