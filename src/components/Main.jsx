@@ -51,7 +51,9 @@ const Main = ({ searchValue, cart, setCart }) => {
 				if (!sizes.includes(size)) {
 					return sizes.push(size);
 				}
+                return null
 			});
+            return null
 		});
 
 		setSearchData({ brands: brands, colours: colours, sizes: sizes });
@@ -142,6 +144,7 @@ const Main = ({ searchValue, cart, setCart }) => {
 				c.quantity += cartItem.quantity;
 				return c;
 			}
+            return null
 		});
 		if (!isFiltered) {
 			setCart([...cart, cartItem]);
@@ -155,8 +158,11 @@ const Main = ({ searchValue, cart, setCart }) => {
 		switch (e.target.value) {
 			case "asc":
 				articles.sort((a, b) => a.price - b.price);
+                break;
 			case "desc":
 				articles.sort((a, b) => b.price - a.price);
+                break;
+            default:
 		}
 	};
 	return (
