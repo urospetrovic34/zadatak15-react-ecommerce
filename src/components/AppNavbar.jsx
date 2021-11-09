@@ -18,7 +18,10 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 	const closeCart = () => {
 		setVisible("modal-wrapper-hidden");
 	};
-	console.log(cart);
+
+	const updateArticle = (e) => {
+		return console.log(e); // Nece da promeni vrednost value-a
+	};
 	return (
 		<div className="nav-container">
 			<div className="nav-title-small">
@@ -41,7 +44,6 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 			<span className={`${visible}`}>
 				<div className="modal add-to-cart">
 					{cart.map((item) => {
-						console.log(item.idItemCart);
 						return (
 							<div className="article-item" id={item.article.id} key={item.idItemCart}>
 								<img src={item.article.picture} alt={item.article.name} />
@@ -57,7 +59,7 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 								<div className="size-container">
 									<p>{item.size}</p>
 								</div>
-								<input type="number" value={item.quantity} readOnly />
+								<input type="number" value={item.quantity} onChange={updateArticle} />
 							</div>
 						);
 					})}

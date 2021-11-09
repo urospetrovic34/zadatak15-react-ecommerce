@@ -49,7 +49,7 @@ const Main = ({ searchValue, cart, setCart }) => {
 
 			article.sizes.filter((size) => {
 				if (!sizes.includes(size)) {
-					sizes.push(size);
+					return sizes.push(size);
 				}
 			});
 		});
@@ -121,22 +121,44 @@ const Main = ({ searchValue, cart, setCart }) => {
 		let quantity = item.quantity < 1 ? 1 : Number(item.quantity);
 		let isDiscountPrice = item.article.discount === null ? item.article.price : item.article.discount; // Ako je svojsvto discount razlicito od null onda postoji popust
 		let price = isDiscountPrice * quantity;
+
+		// console.log(item.article.id);
 		let cartItem = {
-			// idItemCart: id,
+			idItemCart: cart.length + 1,
 			article: item.article,
 			totalPrice: price,
 			quantity: quantity,
 			size: item.size,
 			img: item.article.picture,
 		};
-		// let idItemCart = cartItem.length === 1 ? 1 : idItemCart + 1;
-		console.log(cart.length);
-		setCart([...cart, cartItem]);
+		if (cartItem.size === null) {
+			return console.log("Morate uneti broj patika / ALERT NESTO NE RADI");
+		}
+		let isFiltered = false;
+		cart.filter((c) => {
+			if (c.size === item.size && c.article.name === item.article.name) {
+				isFiltered = true;
+				c.totalPrice += cartItem.totalPrice;
+				c.quantity += cartItem.quantity;
+				return c;
+			}
+		});
+		if (!isFiltered) {
+			setCart([...cart, cartItem]);
+		}
 		closeModal();
 
 		alert(`Uspseno dodat proizvod ${cartItem.article.name} u korpu!`);
 	};
 
+	const sortArticles = (e) => {
+		switch (e.target.value) {
+			case "asc":
+				articles.sort((a, b) => a.price - b.price);
+			case "desc":
+				articles.sort((a, b) => b.price - a.price);
+		}
+	};
 	return (
 		<div className="wrapper">
 			<div className="filter-menu">
@@ -188,11 +210,11 @@ const Main = ({ searchValue, cart, setCart }) => {
 						<div>PRICE</div>
 					</div>
 					<div className="article-price-container-list">
-						<p className="article-price-number-desc">FROM</p>
-						<input type="number" />
-						<p className="article-price-number-desc">TO</p>
-						<input type="number" />
-						<button className="article-price-button">APPLY PRICE</button>
+						<select name="" id="sort" onChange={sortArticles} defaultValue={"default"}>
+							<option value="default">Default</option>
+							<option value="asc">Asc</option>
+							<option value="desc">Desc</option>
+						</select>
 					</div>
 				</div>
 			</div>

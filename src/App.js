@@ -9,8 +9,22 @@ const App = () => {
 
 	const itemsInCart = JSON.parse(localStorage.getItem("cart")) || [];
 	const [cart, setCart] = useState(itemsInCart);
+
+	const savedBrands = JSON.parse(localStorage.getItem("brands")) || [];
+	const [brands, setBrands] = useState(savedBrands);
+
+	useEffect(() => {
+		localStorage.setItem("brands", JSON.stringify(brands));
+	}, [brands]);
+
+	useEffect(() => {
+		setBrands(JSON.parse(localStorage.getItem("brands")));
+		// console.log(JSON.parse(localStorage.getItem("cart")));
+	}, []);
+
 	const openCart = useState();
 	const closeCart = useState();
+	const sort = useState();
 
 	useEffect(() => {
 		localStorage.setItem("cart", JSON.stringify(cart));
@@ -24,7 +38,7 @@ const App = () => {
 	return (
 		<div>
 			<AppNavbar searchValue={searchValue} setSearchValue={setSearchValue} openCart={openCart} closeCart={closeCart} cart={cart} />
-			<Main searchValue={searchValue} setCart={setCart} cart={cart} />
+			<Main searchValue={searchValue} setCart={setCart} cart={cart} sort={sort} />
 			<AppFooter />
 		</div>
 	);
