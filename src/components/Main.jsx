@@ -56,7 +56,7 @@ const Main = ({ searchValue, cart, setCart }) => {
             return brands
 		});
 
-		setSearchData({ brands: brands, colours: colours, sizes: sizes });
+		setSearchData({ brands: brands, colours: colours, sizes: sizes.sort() });
 	};
 
 	// const brands = [];
