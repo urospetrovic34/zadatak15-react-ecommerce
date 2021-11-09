@@ -1,22 +1,21 @@
-import React from "react";
+import React,{ useState } from "react";
 import "./AppNavbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faShoppingCart, faSearch, faBiohazard } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react/cjs/react.development";
 
 library.add(faShoppingCart, faSearch, faBiohazard);
 
 const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
-	//const [visible2, setVisible2] = useState("modal-wrapper-hidden");
+	const [visible2, setVisible2] = useState("modal-wrapper-hidden");
 
 	const openCart = () => {
 		console.log("OPEN CART");
-		//setVisible2("modal-wrapper");
+		setVisible2("modal-wrapper");
 	};
 
 	const closeCart = () => {
-		//setVisible2("modal-wrapper-hidden");
+		setVisible2("modal-wrapper-hidden");
 	};
 	console.log(cart);
 	return (
@@ -38,7 +37,7 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 			<div className="nav-shopping-cart" onClick={openCart}>
 				<FontAwesomeIcon icon="shopping-cart" />
 			</div>
-			<span className="modal-wrapper-hidden">
+			<span className={`${visible2}`}>
 				<div className="modal add-to-cart">
 					{cart.map((item) => {
 						console.log(item.idItemCart);
