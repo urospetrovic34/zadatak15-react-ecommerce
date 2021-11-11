@@ -27,6 +27,7 @@ const AppNavbar = ({ searchValue, setSearchValue, cart,setCart }) => {
 
     const makeOrder = () => {
         setCart([])
+        setVisible("modal-wrapper-cart-hidden")
         setTotalPrice(0)
     }
 

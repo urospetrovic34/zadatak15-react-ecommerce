@@ -186,6 +186,7 @@ img {
 .modal-wrapper-cart{
     position: absolute;
     top: 10%;
+    right: 720px;
 }
 
 .modal-wrapper-cart-hidden{
@@ -431,6 +432,15 @@ img {
 @media screen and (max-width:720px) {
     .article-item {
       width:50%;
+    }
+    .modal-cart{
+        width: 100vw;
+    }
+    .modal-wrapper-cart{
+        position: absolute;
+        top: 10%;
+        right: 0;
+        left:0;
     }
 }
 
