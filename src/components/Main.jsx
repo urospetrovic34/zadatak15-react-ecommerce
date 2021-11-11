@@ -11,6 +11,7 @@ const Main = ({ searchValue, cart, setCart }) => {
 	// console.log("Ovo je moj kart");
 	// console.log(cart);
 	const [visible, setVisible] = useState("modal-wrapper-hidden");
+    const [visibleFilter,setVisibleFilter] = useState("")
 	const [search, setSearch] = useState({
 		brands: [],
 		size: null,
@@ -56,20 +57,8 @@ const Main = ({ searchValue, cart, setCart }) => {
             return null
 		});
 
-		setSearchData({ brands: brands, colours: colours, sizes: sizes });
+		setSearchData({ brands: brands, colours: colours, sizes: sizes.sort() });
 	};
-
-	// const brands = [];
-	// const colours = [];
-	// const sizes = [];
-	// const sizesNumbers = Array.from({ length: 12 }, (_, i) => i + 37);
-	// const uniqueBrands = [...new Map(articles.map((item) => [item["brand"], item])).values()];
-	// uniqueBrands.map(({ id, brand }) => brands.push({ id: id, checked: false, value: brand }));
-	// const uniqueColours = [...new Map(articles.map((item) => [item["colour"], item])).values()];
-	// uniqueColours.map(({ id, colour }) => colours.push({ id: id, checked: false, value: colour }));
-	// for (let i = 0; i < 12; i++) {
-	// 	sizes.push({ id: i, checked: false, value: sizesNumbers[i] });
-	// }
 
 	const openModal = (article) => {
 		setItem({ ...item, article: article });
@@ -84,6 +73,10 @@ const Main = ({ searchValue, cart, setCart }) => {
 			article: null,
 		});
 	};
+
+    const openFilterMenuSmall = () => {
+        !visibleFilter ? setVisibleFilter("visible-filter") : setVisibleFilter("")
+    }
 
 	const handlerSearchBrands = (id) => {
 		if (search.brands.includes(id)) {
@@ -153,21 +146,10 @@ const Main = ({ searchValue, cart, setCart }) => {
 
 		alert(`Uspseno dodat proizvod ${cartItem.article.name} u korpu!`);
 	};
-
-	const sortArticles = (e) => {
-		switch (e.target.value) {
-			case "asc":
-				articles.sort((a, b) => a.price - b.price);
-                break;
-			case "desc":
-				articles.sort((a, b) => b.price - a.price);
-                break;
-            default:
-		}
-	};
 	return (
 		<div className="wrapper">
-			<div className="filter-menu">
+        <button className="open-filter-small" onClick={() => openFilterMenuSmall()}>FILTER</button>
+			<div className={`filter-menu ${visibleFilter}`}>
 				<p className="filter-title">FILTER</p>
 				<div className="article-model-container">
 					<div className="article-model-container-title">
@@ -204,23 +186,11 @@ const Main = ({ searchValue, cart, setCart }) => {
 					<div className="article-size-container-list">
 						{searchData.sizes.map((size, index) => {
 							return (
-								<div onClick={() => handlerSearchSize(size)} key={index} className="size-box" style={{ backgroundColor: search.size === size ? "#FF0000" : "#FFF" }}>
+								<div onClick={() => handlerSearchSize(size)} key={index} className="size-box" style={{ backgroundColor: search.size === size ? "#98002e" : "white",color:search.size === size ? "#f9a01b" : "black" }}>
 									<p>{size}</p>
 								</div>
 							);
 						})}
-					</div>
-				</div>
-				<div className="article-price-container">
-					<div className="article-price-container-title">
-						<div>PRICE</div>
-					</div>
-					<div className="article-price-container-list">
-						<select name="" id="sort" onChange={sortArticles} defaultValue={"default"}>
-							<option value="default">Default</option>
-							<option value="asc">Asc</option>
-							<option value="desc">Desc</option>
-						</select>
 					</div>
 				</div>
 			</div>

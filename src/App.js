@@ -37,7 +37,7 @@ const App = () => {
 
 	return (
 		<div>
-			<AppNavbar searchValue={searchValue} setSearchValue={setSearchValue} openCart={openCart} closeCart={closeCart} cart={cart} />
+			<AppNavbar searchValue={searchValue} setSearchValue={setSearchValue} openCart={openCart} closeCart={closeCart} cart={cart} setCart={setCart} />
 			<Main searchValue={searchValue} setCart={setCart} cart={cart} sort={sort} />
 			<AppFooter />
 		</div>

@@ -6,21 +6,30 @@ import { faShoppingCart, faSearch, faBiohazard } from "@fortawesome/free-solid-s
 
 library.add(faShoppingCart, faSearch, faBiohazard);
 
-const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
-	const [visible, setVisible] = useState("modal-wrapper-hidden");
+const AppNavbar = ({ searchValue, setSearchValue, cart,setCart }) => {
+	const [visible, setVisible] = useState("modal-wrapper-cart-hidden");
+    const [totalPrice,setTotalPrice] = useState(0)
 
 	const openCart = () => {
+        let priceAux = 0
 		console.log("OPEN CART");
-		setVisible("modal-wrapper");
-	};
-
-	const closeCart = () => {
-		setVisible("modal-wrapper-hidden");
+		visible === "modal-wrapper-cart-hidden" ? setVisible("modal-wrapper-cart") : setVisible("modal-wrapper-cart-hidden")
+        cart.map((item)=>{
+            priceAux += item.totalPrice
+            return null
+        })
+        setTotalPrice(priceAux)
 	};
 
 	const updateArticle = (e) => {
 		return console.log(e); // Nece da promeni vrednost value-a
 	};
+
+    const makeOrder = () => {
+        setCart([])
+        setTotalPrice(0)
+    }
+
 	return (
 		<div className="nav-container">
 			<div className="nav-title-small">
@@ -40,31 +49,40 @@ const AppNavbar = ({ searchValue, setSearchValue, cart }) => {
 			<div className="nav-shopping-cart" onClick={openCart}>
 				<FontAwesomeIcon icon="shopping-cart" />
 			</div>
-			<span className={`${visible}`}>
-				<div className="modal add-to-cart">
-					{cart.map((item) => {
+            <span className={`${visible}`}>
+                <div className="modal-cart add-to-cart">
+                {cart.map((item) => {
 						return (
-							<div className="article-item" id={item.article.id} key={item.idItemCart}>
-								<img src={item.article.picture} alt={item.article.name} />
-								<div className="brand-container">
-									<p className="brand">{item.article.brand}</p>
-								</div>
-								<div className="name-container">
-									<p className="name">{item.article.name}</p>
-								</div>
-								<div className="price-container">
-									<p>{item.totalPrice}</p>
-								</div>
-								<div className="size-container">
-									<p>{item.size}</p>
-								</div>
-								<input type="number" value={item.quantity} onChange={updateArticle} />
-							</div>
+                            <div className="modal-cart-article" id={item.article.id} key={item.idItemCart}>
+                                <img src={item.article.picture} alt={item.article.name} />
+								<div className="cart-brand-name">
+                                    <div>
+                                        {item.article.brand}
+                                    </div>
+                                    <div className="cart-name">
+                                        {item.article.name}
+                                    </div>
+                                </div>
+                                <div className="cart-price">
+                                    {item.totalPrice}
+                                </div>
+                                <div className="cart-input">
+								    <input type="number" value={item.quantity} onChange={updateArticle} />
+                                </div>
+                            </div>
 						);
 					})}
-					<FontAwesomeIcon icon="times" onClick={closeCart} className="close-modal" />
-				</div>
-			</span>
+                    <div className="cart-total-price">
+                        <div>
+                            TOTAL PRICE
+                        </div>
+                        <div>
+                            {totalPrice} RSD
+                        </div>
+                    </div>
+                    <button className="order-button" onClick={()=>makeOrder()}>ORDER</button>
+                </div>
+            </span>
 		</div>
 	);
 };
