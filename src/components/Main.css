@@ -398,7 +398,6 @@ img {
   user-select: none;
   padding: 20px;
   border: 1px solid black;
-  height: 100%;
   cursor: pointer;
 }
 
