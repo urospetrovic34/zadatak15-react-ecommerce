@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 35px 20px;
+  background-color: #98002e;
+  background-image: url("../cssAssets/patternbg.png");
+}
+
+.footer > p {
+  color: #f9a01b;
+  font-size: 25px;
+  letter-spacing: 1px;
+  font-family: "Alfa Slab One", sans-serif;
+}
